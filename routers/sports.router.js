@@ -16,14 +16,16 @@ router.get('/sports/', async (req, res) => {
     sportController.list(req, res);
 });
 
+// création sport
 router.get('/createSports', (req, res) => {
     res.render('addSports');
   });
 
-router.post ('/createSports', function(req,res,next) {
-    console.log(req.body)
+router.post ('/createSports', function(req,res) {
+    console.log(req.body);
     let item = {
         name: req.body.name,
+        category: req.body.category,
     };
     mongoose.connect(uri, function (err, db) {
         //assert.equal(null, err);
@@ -33,9 +35,10 @@ router.post ('/createSports', function(req,res,next) {
             db.close;
         });
     });
-  
-    res.redirect('/');
-  });
+    res.redirect("/");
+});
+    // Supprimer sport
+    router.get('/deleteSport/:id', sportController.getDeleteSport);
 
 // Example
 router.get('/sportss', (request, response) => {

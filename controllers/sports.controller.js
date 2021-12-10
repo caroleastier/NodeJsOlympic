@@ -11,7 +11,7 @@ class SportsController {
             count: sports.length,
             sports: sports
         });
-    }
+    };
 
     // Update
     getUpdateSports = async (req, res, next) => {
@@ -24,7 +24,7 @@ class SportsController {
         } catch (error) {
             res.status(400).send(error.message);
         }
-    }
+    };
 
     // Update
     updateSports = async(req, res, next) => {
@@ -40,8 +40,31 @@ class SportsController {
         if(!Sports) return res.status(404).send('Sports with the given id not found');
     
         res.redirect('/');
-    }
+    };
 
+
+    getDeleteSport = async (req, res, next) => {
+        try {
+            const id = req.params.id;
+            const mySport = await Customer.findById(id).exec();
+            res.render('deleteSport', {
+                sport: mySport
+            });
+        } catch (error) {
+            res.status(400).send(error.message);
+        }
+    };
+    
+    deleteSport = async (req, res, next) => {
+        try {
+            const id = req.params.id;
+            const sport = await Sport.findByIdAndRemove(id);
+            if(!sport) return res.status(404).send('Sport non trouvé !');
+            res.redirect('/');        
+        } catch (error) {
+            res.status(400).send(error.message);
+        }
+    };
 
 }
 

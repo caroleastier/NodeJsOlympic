@@ -36,12 +36,11 @@ app.use('/api', athleteRouter);
 
 async function main() {
     await client.connect();
-    console.log("test");
     const db = client.db('OlympicDatabase');
     const collectionSports = db.collection('Sports');
     const sports = await collectionSports.find().toArray();
     sports.forEach(sport => {
-        console.log(sport);
+        //console.log(sport);
     });
 
     client.close();
@@ -52,21 +51,6 @@ async function main() {
 app.get('/', (req, res) => {
   res.render('index', { name: "test" });
 });
-/*
-app.get('/createSports', (req, res) => {
-  res.render('addSports');
-});*/
-/*
-app.post('/create', (req, res) => {
-  console.log('Hellooooooooooooooooo!');
-  var dbo = db.db("Cluster0");
-  var myobj = { name: "" };
-  dbo.collection("Sports").insertOne(myobj, function(err, res) {
-    if (err) throw err;
-    console.log("1 document ajouté");
-    db.close();
-});
-*/
 
 // on écoute sur notre port.
 app.listen(port, () => {
