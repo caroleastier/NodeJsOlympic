@@ -2,6 +2,8 @@
 // on récupére notre dépendance externe - ici express.
 const express = require('express');
 const hbs = require("handlebars");
+const handlebars = require('express-handlebars');
+
 var path = require('path');
 // on construit notre application qui nous servira à créer nos routes
 const app = express();
