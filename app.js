@@ -19,8 +19,6 @@ app.set('view engine', 'hbs');
 // on indique que nos vues se trouverons toujours dans le dossier views 
 app.set('views', path.join(__dirname, 'views'));
 
-//const mongoose = require('mongoose');
-
 const { MongoClient } = require('mongodb');
 
 const mongoose = require('mongoose');
@@ -28,6 +26,13 @@ const mongoose = require('mongoose');
 const uri = "mongodb+srv://admin:admin@cluster0.6xtj1.mongodb.net/OlympicDatabase?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+const SportsRouter = require('./routers/sports.router');
+
+const athleteRouter = require('./routers/athlete.router');
+
+app.use('/api', SportsRouter.routes);
+app.use('/api', athleteRouter);
 
 async function main() {
     await client.connect();
@@ -47,10 +52,10 @@ async function main() {
 app.get('/', (req, res) => {
   res.render('index', { name: "test" });
 });
-
-app.get('/create', (req, res) => {
-  res.render('addSports', { name: "test" });
-});
+/*
+app.get('/createSports', (req, res) => {
+  res.render('addSports');
+});*/
 /*
 app.post('/create', (req, res) => {
   console.log('Hellooooooooooooooooo!');
@@ -62,44 +67,10 @@ app.post('/create', (req, res) => {
     db.close();
 });
 */
-app.post ('/create', function(req,res,next) {
-  console.log(req.body)
-  let item = {
-      name: req.body.name,
-  };
-  mongoose.connect(uri, function (err, db) {
-      //assert.equal(null, err);
-      db.collection('Sports').insertOne(item, function (err, result) {
-          //assert.equal(null, err);
-          console.log('item has been inserted');
-          db.close;
-      });
-  });
-
-  res.redirect('/');
-});
-
-app.get('/sports', (request, response) => {
-    const sports = [
-      {
-        name : 'Handball'
-      },
-      {
-        name : 'Course à pied'
-      }
-    ];
-    response.send(sports);
-})
-
-app.post("/sportss", (request, response) => {
-  const sports = request.body;
-  console.log('sport' > sports);
-
-})
 
 // on écoute sur notre port.
 app.listen(port, () => {
-  console.log(`TweetJS listening at http://localhost:${port}`)
+  console.log(`Olympic Games listening at http://localhost:${port}`)
 });
 
 main();

@@ -7,7 +7,6 @@ const athleteSchema = new mongoose.Schema({
     lastName: String,
     firstName: String,
     age: Number,
-    sport: Sports,
     country: String,
 });
 
