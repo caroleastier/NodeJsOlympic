@@ -9,25 +9,25 @@
 ### Lancer l'application :
 1. Se placer dans le dossier NodeJsOlympic dans le Terminal
 2. Récupérer le dossier des dépendances npm avec la commande
-  `npm install`
+  `npm install mongoose`
 3. Lancer l'application avec les commande
    `npm start`
    `node app.js`
- 
+   `npm run dev` // De préférence afin de modifier "en direct"
 
 
 ### Check List de réalisation du projet
 
 ##### Points de terminaison Sports
-- [ ] Endpoint Créer un sport : `POST /api/sports`
-- [ ] Endpoint Lister les sports : `GET /api/sports (déjà fourni dans le squelette du projet)`
-- [ ] Endpoint Consulter les athlètes d'un sport : `GET /api/sports/{sportId}/athletes`
-- [ ] Endpoint Ajouter un athlète dans un sport : `POST /api/sports/{sportId}/athletes/{athleteId}`
+- [x] Endpoint Créer un sport : `POST /api/sports`
+- [x] Endpoint Lister les sports : `GET /api/sports (déjà fourni dans le squelette du projet)`
+- [x] Endpoint Consulter les athlètes d'un sport : `GET /api/sports/{sportId}/athletes`
+- [x] Endpoint Ajouter un athlète dans un sport : `POST /api/sports/{sportId}/athletes/{athleteId}`
 
 ##### Points de terminaison Athlètes
-- [ ]  Endpoint Créer un athlète : `POST /api/athletes`
-- [ ]  Endpoint Lister les athlètes : `GET /api/athletes`
-- [ ]  Endpoint Consulter les sports d'un athlète : `GET /api/athletes/{athleteId}/sports`
+- [x]  Endpoint Créer un athlète : `POST /api/athletes`
+- [x]  Endpoint Lister les athlètes : `GET /api/athletes`
+- [x]  Endpoint Consulter les sports d'un athlète : `GET /api/athletes/{athleteId}/sports`
 
 
 ##### Interface Web

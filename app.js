@@ -1,4 +1,3 @@
-
 // on récupére notre dépendance externe - ici express.
 const express = require('express');
 const hbs = require("handlebars");
@@ -27,39 +26,30 @@ const mongoose = require('mongoose');
 
 const uri = "mongodb+srv://admin:admin@cluster0.6xtj1.mongodb.net/OlympicDatabase?retryWrites=true&w=majority";
 
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const connectToMongoDB = async() => {
+  try {
+    const connexion = await mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
+    console.log("Connect to MongoDB")
+  } catch(error) {
+    console.log(error)
+  }
+}
+
+connectToMongoDB()
 
 const SportsRouter = require('./routers/sports.router');
 
 const athleteRouter = require('./routers/athlete.router');
 
-app.use('/api', SportsRouter.routes);
-app.use('/api', athleteRouter);
+app.use('/api/sports', SportsRouter);
 
-async function main() {
-    await client.connect();
-    const db = client.db('OlympicDatabase');
-    const collectionSports = db.collection('Sports');
-    const sports = await collectionSports.find().toArray();
-    sports.forEach(sport => {
-        //console.log(sport);
-    });
-
-    client.close();
-}
+app.use('/api/athletes', athleteRouter);
 
 
-// A supprimer plus tard
-/*app.get('/', (req, res) => {
-  res.render('index', { name: "test" });
-});*/
-const AthletesController = require('./controllers/athlete.controller');
-const athletesController = new AthletesController();
-//app.get('/', athletesController.getAllAthletes);
 
 // on écoute sur notre port.
 app.listen(port, () => {
   console.log(`Olympic Games listening at http://localhost:${port}`)
 });
 
-main();
+

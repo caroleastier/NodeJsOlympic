@@ -3,12 +3,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const sportsSchema = new mongoose.Schema({
+const sportSchema = new mongoose.Schema({
     name: String,
     category: String,
     athletes : [{ type: Schema.Types.ObjectId, ref: 'Athlete' }]
+}, {
+    versionKey: false
 });
 
-const Sports = mongoose.model('Sports', sportsSchema);
-
-module.exports = Sports;
+module.exports = mongoose.model('Sport', sportSchema);

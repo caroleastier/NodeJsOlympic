@@ -1,9 +1,11 @@
-const Sports = require('../src/models/sports.model');
+const Sport = require('../src/models/sport.model');
+const Athlete = require('../src/models/athlete.model')
+const mongoose = require('mongoose')
+
 
 class SportsController {
-    /**
-     * Lister tous les sports
-     */
+
+    // Non utilisé
     async list(req, res) {
         const sports = await Sports.find();
 
@@ -13,59 +15,74 @@ class SportsController {
         });
     };
 
-    // Update
-    getUpdateSports = async (req, res, next) => {
+    // Créer un sport
+    createSports = async (req, res, next) => {
         try {
-            const id = req.params.id;
-            const mySport = await Sports.findById(id).exec();
-            res.render('updateSports', {
-                Sports: mySport,
+            const sport = new Sport({
+                name: req.body.name,
+                category: req.body.category,
+                athletes: req.body.athletes
             });
+
+            const addSport = await sport.save(); 
+
+            res.status(201).json({sports: addSport})        
         } catch (error) {
             res.status(400).send(error.message);
         }
-    };
+    }
 
-    // Update
-    updateSports = async(req, res, next) => {
-        const {error} = validate(req.body);
-        if (error) return res.status(422).send(error.details[0].message);
-        const id = req.params.id;
-        const data = req.body;
-        let Sports = await Sports.findByIdAndUpdate(id, {
-            name: data.name,
-            category: data.category,
-            Athletes: data.athletes,
-        }, {new: true});
-        if(!Sports) return res.status(404).send('Sports with the given id not found');
-    
-        res.redirect('/');
-    };
-
-
-    getDeleteSport = async (req, res, next) => {
+    // Lister les sports
+    getAllSports = async (req, res, next) => {
         try {
-            const id = req.params.id;
-            const mySport = await Sports.findById(id).exec();
-            res.render('deleteSport', {
-                sport: mySport
-            });
-        } catch (error) {
-            res.status(400).send(error.message);
-        }
-    };
+            console.log(Sport)
+            const list = await Sport.find();
+            console.log(list)
+            /*res.render('index', {
+                sports: list
+            });*/
+            res.json({sports: list})
     
-    deleteSport = async (req, res, next) => {
-        try {
-            const id = req.params.id;
-            const sport = await Sports.findByIdAndRemove(id);
-            if(!sport) return res.status(404).send('Sport non trouvé !');
-            res.redirect('/');        
         } catch (error) {
             res.status(400).send(error.message);
         }
-    };
+    }
 
+    // Consulter les athlètes d'un sport
+    getAthletesBySport = async (req, res, next) => {
+        try {
+            const sport = await Sport.findById(req.params.id);
+            const athletesIds = sport.athletes;
+
+            const athletes = await Athlete.find({ "_id" : { $in : athletesIds}})
+
+            /*res.render('index', {
+            sports: list
+            });*/
+
+            res.json({athletes})
+        } catch (error) {
+            res.status(400).send(error.message);
+        }
+    }
+
+    // Ajouter un athlète dans un sport
+    addAthleteBySport = async (req, res, next) => {
+        try {
+            const sport = await Sport.findById(req.params.sportId)
+
+            sport.name = sport.name,
+            sport.category = sport.category,
+            sport.athletes =  [req.params.athleteId, ...sport.athletes]
+
+            const newAthleteOnSport = await sport.save();
+
+            res.status(200).res.json(newAthleteOnSport)
+
+        } catch (error) {
+            res.status(400).send(error.message);
+        }
+    }
 }
 
 module.exports = SportsController;
