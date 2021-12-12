@@ -48,11 +48,14 @@ async function main() {
     client.close();
 }
 
-// notre première route !
-// on envoi un Hello World si la requête est sur la racine.
-app.get('/', (req, res) => {
+
+// A supprimer plus tard
+/*app.get('/', (req, res) => {
   res.render('index', { name: "test" });
-});
+});*/
+const AthletesController = require('./controllers/athlete.controller');
+const athletesController = new AthletesController();
+//app.get('/', athletesController.getAllAthletes);
 
 // on écoute sur notre port.
 app.listen(port, () => {

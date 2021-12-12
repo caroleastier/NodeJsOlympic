@@ -46,7 +46,7 @@ class SportsController {
     getDeleteSport = async (req, res, next) => {
         try {
             const id = req.params.id;
-            const mySport = await Customer.findById(id).exec();
+            const mySport = await Sports.findById(id).exec();
             res.render('deleteSport', {
                 sport: mySport
             });
@@ -58,7 +58,7 @@ class SportsController {
     deleteSport = async (req, res, next) => {
         try {
             const id = req.params.id;
-            const sport = await Sport.findByIdAndRemove(id);
+            const sport = await Sports.findByIdAndRemove(id);
             if(!sport) return res.status(404).send('Sport non trouvé !');
             res.redirect('/');        
         } catch (error) {

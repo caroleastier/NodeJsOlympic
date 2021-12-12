@@ -8,5 +8,6 @@ router.get('/athletes/', async (req, res) => {
     athleteController.list(req, res);
 });
 
+router.get('/', athleteController.getAllAthletes);
 
 module.exports = router;
