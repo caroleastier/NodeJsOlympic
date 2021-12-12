@@ -8,9 +8,9 @@ router.get('/athletes/', async (req, res) => {
     await athleteController.list(req, res);
 });
 
-<<<<<<< HEAD
+
 router.get('/', athleteController.getAllAthletes);
-=======
+
 router.get('/createAthlete', (req, res) => {
     res.render('addAthlete');
 });
@@ -33,6 +33,6 @@ router.post ('/createAthlete', function(req,res) {
     });
     res.redirect("/");
 });
->>>>>>> c881462fa1f84036a31ab5534e0fb33463b7162d
+
 
 module.exports = router;
