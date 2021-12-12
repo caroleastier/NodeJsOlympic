@@ -12,10 +12,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="stylesheet" type="text/css" href="./style.css" />
   </head>
+test
 
-  {{#each athlete as |athlete|}}
+
+  {{#each athletes as |athlete|}}
     {{#> childEntry}}
       {{athlete.firstname}} {{athlete.lastname}} {{athlete.age}}
     {{/childEntry}}
   {{/each}}
+
+
+                <% if(athletes.length > 0) { %>
+                    <% for(let athlete of athletes) { %>
+                    <tr>
+                        <th scope="row"><%= athlete.firstname %> <%= athlete.lastname %></th>
 </html>
