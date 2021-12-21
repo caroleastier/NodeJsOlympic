@@ -45,7 +45,9 @@ app.use('/api/sports', SportsRouter);
 
 app.use('/api/athletes', athleteRouter);
 
-
+app.get('/', function(req, res) {
+    res.render('index')
+})
 
 // on écoute sur notre port.
 app.listen(port, () => {

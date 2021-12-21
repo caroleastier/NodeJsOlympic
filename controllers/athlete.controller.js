@@ -30,7 +30,12 @@ class AthleteController {
 
             const addAthlete = await athlete.save(); 
 
-            res.status(201).json({athletes: addAthlete})        
+            //res.status(201).json({athletes: addAthlete})  
+            const list = await Athlete.find(); 
+            res.render('listAthletes', {
+                athletes: list
+            });
+            
         } catch (error) {
             res.status(400).send(error.message);
         }
@@ -41,7 +46,6 @@ class AthleteController {
         try {
             console.log(Athlete)
             const list = await Athlete.find();
-            console.log(list)
             res.render('listAthletes', {
                 athletes: list
             });
@@ -57,12 +61,12 @@ class AthleteController {
         try {
             const athlete = await Athlete.findById(req.params.athleteId);
             const sports = await Sport.find({ "athletes" : { $in : athlete._id}}).exec()
-            console.log()
-            /*res.render('index', {
-            sports: list
-            });*/
+            res.render('SportsByAthlete', {
+                athlete: athlete,
+                sports: sports
+            });
 
-            res.json({sports})
+            //res.json({sports})
 
         } catch (error) {
             res.status(400).send(error.message);

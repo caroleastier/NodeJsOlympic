@@ -14,28 +14,33 @@
    `npm start`
    `node app.js`
    `npm run dev` // De préférence afin de modifier "en direct"
+4. Se mettre sur localhost:3000/
 
 
 ### Check List de réalisation du projet
 
 ##### Points de terminaison Sports
 - [x] Endpoint Créer un sport : `POST /api/sports`
-- [x] Endpoint Lister les sports : `GET /api/sports (déjà fourni dans le squelette du projet)`
+- [x] Endpoint Lister les sports : `GET /api/sports/`
 - [x] Endpoint Consulter les athlètes d'un sport : `GET /api/sports/{sportId}/athletes`
 - [x] Endpoint Ajouter un athlète dans un sport : `POST /api/sports/{sportId}/athletes/{athleteId}`
 
 ##### Points de terminaison Athlètes
 - [x]  Endpoint Créer un athlète : `POST /api/athletes`
-- [x]  Endpoint Lister les athlètes : `GET /api/athletes`
+- [x]  Endpoint Lister les athlètes : `GET /api/athletes/`
 - [x]  Endpoint Consulter les sports d'un athlète : `GET /api/athletes/{athleteId}/sports`
 
 
 ##### Interface Web
 ##### Pages Web Sports/Athlètes
-- [ ]  Page Web Lister les sports
-- [ ]  Page Web Lister les athlètes
-- [ ]  Page Web Créer un sport (formulaire)
-- [ ]  Page Web Créer un athlète (formulaire)
+- [x]  Page Web Lister les sports
+- [x]  Page Web Lister les athlètes
+- [x]  Page Web Créer un sport (formulaire)
+- [x]  Page Web Créer un athlète (formulaire)
+
+##### Pages Web pour consulter : (En plus) 
+- [x]  La liste des sports d'un athlète
+- [x]  La liste d'un athlète dans ses sports
 
 ##### Autres pages Web Sports/Athlètes (optionnel)
 - [ ]  Page Web ou fonctionnalité Supprimer un sport
@@ -45,7 +50,7 @@
 
 
 ##### Rendu attendu
-- [ ] Code source sur un repo Git
+- [x] Code source sur un repo Git
   README.md
-- [ ] Instructions pour installer le projet (git clone, npm install, npm start, éventuels exemples de commande curl, ...)
-- [ ] Checklist des API et des fonctionnalités Web avec un statut des tests
+- [x] Instructions pour installer le projet (git clone, npm install, npm start, éventuels exemples de commande curl, ...)
+- [x] Checklist des API et des fonctionnalités Web avec un statut des tests

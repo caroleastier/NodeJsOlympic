@@ -19,30 +19,26 @@
     <table class="table table-hover">
       <thead class="table-dark">
         <tr>
-          <th scope="col">Prénom</th>
           <th scope="col">Nom</th>
-          <th scope="col">Age</th>
-          <th scope="col">Pays</th>
-          <th scope="col">Sports</th>
+          <th scope="col">Catégorie</th>
+          <th scope="col">Athlètes</th>
         </tr>
       </thead>
       <tbody>
 
-        {{#each athletes as |athlete|}}
+        {{#each sports as |sport|}}
         {{#> childEntry}}
         <tr>
-          <td>{{athlete.firstName}}</td>
-          <td>{{athlete.lastName}}</td>
-          <td>{{athlete.age}}</td>
-          <td>{{athlete.country}}</td>
-          <td><a href="{{athlete._id}}/sports"><input type="button" value="Sports"></a></td>
+          <td>{{sport.name}}</td>
+          <td>{{sport.category}}</td>
+          <td><a href="{{sport._id}}/athletes"><input type="button" value="Athlètes"></a></td>
         </tr>
         {{/childEntry}}
         {{/each}}
 
       </tbody>
     </table>
-    <a href="/api/athletes/addAthlete"><input type="button" value="Nouveau Athlète"></a>
+    <a href="/api/sports/addSport"><input type="button" value="Nouveau Sport"></a>
   </div>
 </body>
 

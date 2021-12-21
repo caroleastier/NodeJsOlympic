@@ -16,4 +16,8 @@ router.route('/:id/athletes')
 router.route('/:sportId/athletes/:athleteId')
     .post(sportController.addAthleteBySport)
 
+router.get('/addSport', function (req, res) {
+    res.render('addSports')
+})
+
 module.exports = router;
