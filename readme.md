@@ -23,7 +23,7 @@
 - [x] Endpoint Créer un sport : `POST /api/sports`
 - [x] Endpoint Lister les sports : `GET /api/sports/`
 - [x] Endpoint Consulter les athlètes d'un sport : `GET /api/sports/{sportId}/athletes`
-- [x] Endpoint Ajouter un athlète dans un sport : `POST /api/sports/{sportId}/athletes/{athleteId}`
+- [ ] Endpoint Ajouter un athlète dans un sport : `POST /api/sports/{sportId}/athletes/{athleteId}`
 
 ##### Points de terminaison Athlètes
 - [x]  Endpoint Créer un athlète : `POST /api/athletes`
